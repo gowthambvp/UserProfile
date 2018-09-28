@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="login-form">
+    <div class="main-div">
+      <div class="panel">
+        <h2>Login form</h2>
+        <p>Please enter your email and password</p>
+      </div>
+      <form id="Login">
+
+        <div class="form-group">
+          <input type="text" name="email" #email="ngModel" [class.is-invalid]="(email.invalid && email.touched)"
+            required [(ngModel)]="registrationDto.UserName" class="form-control border_width_2" pattern="(^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)" />
+          <small *ngIf="((email.invalid && email.touched)&& email.errors.pattern)" class="Req_Validation">
+            UserName is invalid
+          </small>
+          <small *ngIf="((email.invalid && email.touched)&& email.errors.required)" class="Req_Validation">
+            UserName is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <input type="password" [(ngModel)]="registrationDto.Password" name="password" #password="ngModel"
+            [class.is-invalid]="(password.invalid && password.touched)" required class="form-control border_width_2" />
+          <small *ngIf="(password.invalid && password.touched)" class="Req_Validation">
+            Password is required
+          </small>
+        </div>
+        <div class="forgot">
+          <a href="reset.html">Forgot password?</a>
+        </div>
+        <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+        <button  type="button" (click)="fun_LogIn()" class="btn btn-primary">Login</button>
+        <!-- <button style="text-align:center" type="button" (click)="fun_SignUp()" class="btn btn-primary active">SignUp</button> -->
+
+      </form>
+     <p style="padding-top: 20px">new user  <a (click)="fun_SignUp()" style="cursor: pointer;color:blue ">Signup</a></p>
+    </div>
+    <p > Designed by Gowtham</p>
+  </div>
+</div>

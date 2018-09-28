@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Registration form</h2>
+                <p>Please fill your details</p>
+            </div>
+            <form #regform="ngForm" novalidate>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Enter Firstname" name="fName" #fName="ngModel" [class.is-invalid]="(fName.invalid && fName.touched)"
+                        required [(ngModel)]="registrationDto.FirstName" class="form-control border_width_2" />
+                    <small *ngIf="(fName.invalid && fName.touched) || (fName.pristine &&  
+    regform.submitted && fName.invalid)"
+                        class="Req_Validation">
+                        First Name is required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Enter Lastname" name="lName" #lName="ngModel" [class.is-invalid]="(lName.invalid && lName.touched)"
+                        required [(ngModel)]="registrationDto.LastName" class="form-control border_width_2" />
+                    <small *ngIf="(lName.invalid && lName.touched) || (lName.pristine &&  
+              regform.submitted && lName.invalid)"
+                        class="Req_Validation">
+                        Last Name is required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Enter Username" name="email" #email="ngModel" [class.is-invalid]="(email.invalid && email.touched)"
+                        required [(ngModel)]="registrationDto.UserName" class="form-control border_width_2" pattern="(^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)" />
+                    <small *ngIf="((email.invalid && email.touched)&& email.errors.pattern) || (email.pristine &&  
+        regform.submitted && email.errors.pattern)"
+                        class="Req_Validation">
+                        UserName is invalid
+                    </small>
+                    <small *ngIf="((email.invalid && email.touched)&& email.errors.required) || (email.pristine &&  
+        regform.submitted && email.errors.required)"
+                        class="Req_Validation">
+                        UserName is required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Enter Password" [(ngModel)]="registrationDto.Password" name="password"
+                        #password="ngModel" [class.is-invalid]="(password.invalid && password.touched)" required class="form-control border_width_2"
+                        pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)">
+                    <small *ngIf="((password.invalid && password.touched)&& password.errors.pattern) || (password.pristine &&  
+        regform.submitted && password.errors.pattern)"
+                        class="Req_Validation">
+                        Password is invalid
+                    </small>
+                    <small *ngIf="((password.invalid && password.touched)&& password.errors.required) || (password.pristine &&  
+        regform.submitted && password.errors.required)"
+                        class="Req_Validation">
+                        Password is required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Enter Confirm Password" [(ngModel)]="registrationDto.RePassword"
+                        name="rePassword" #rePassword="ngModel" [class.is-invalid]="(rePassword.invalid && rePassword.touched)"
+                        required class="form-control border_width_2" />
+                    <small *ngIf="(rePassword.invalid && rePassword.touched) || (rePassword.pristine &&  
+        regform.submitted && rePassword.invalid)"
+                        class="Req_Validation">
+                        Confirm Password is required
+                    </small>
+                </div>
+
+                <div *ngIf="(regform.invalid)">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <div *ngIf="(!regform.invalid)">
+                    <button (click)="fun_SignUp()" type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+            <p style="padding-top: 20px">already a user <a routerLink="/loginNew" style="cursor: pointer;">Signin</a></p>
+        </div>
+    </div>
+</div>

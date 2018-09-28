@@ -1,0 +1,42 @@
+<div class="container">
+    <h3 style="text-align:center">Welcome To User Profile Login Page: </h3>
+    <div class="container" style="text-align:center">
+        <div style="margin-top:50px">
+            <img (click)="socialSignIn('facebook')" class="SocialLoginImg" src="src/assets/Images/facebook-login.png" />
+
+            <img (click)="socialSignIn('google')" class="SocialLoginImg" src="src/assets/Images/google-login.png" style="margin-left:10px"
+            />
+        </div>
+        <table style="margin-left:  34%;margin-bottom:  10px;margin-top:  21px;">
+            <tr>
+                <td>
+                    <label>UserName</label>
+                </td>
+                <td>
+                    <input type="text" name="email" #email="ngModel" [class.is-invalid]="(email.invalid && email.touched)" required [(ngModel)]="registrationDto.UserName"
+                        class="form-control border_width_2" pattern="(^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)" />
+                    <small *ngIf="((email.invalid && email.touched)&& email.errors.pattern)" class="Req_Validation">
+                        UserName is invalid
+                    </small>
+                    <small *ngIf="((email.invalid && email.touched)&& email.errors.required)" class="Req_Validation">
+                        UserName is required
+                    </small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+                <td>
+                    <input type="password" [(ngModel)]="registrationDto.Password" name="password" #password="ngModel" [class.is-invalid]="(password.invalid && password.touched)"
+                        required class="form-control border_width_2" />
+                    <small *ngIf="(password.invalid && password.touched)" class="Req_Validation">
+                        Password is required
+                    </small>
+                </td>
+            </tr>
+        </table>
+        <button style="text-align:center;margin-right: 10px;" type="button" (click)="fun_LogIn()" class="btn btn-primary active">Login</button>
+        <button style="text-align:center" type="button" (click)="fun_SignUp()" class="btn btn-primary active">SignUp</button>
+    </div>
+</div>

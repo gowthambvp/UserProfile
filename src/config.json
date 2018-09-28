@@ -1,0 +1,15 @@
+{
+    "Db_Connection": {
+        "user": "postgres",
+        "host": "localhost",
+        "database": "UserProfile",
+        "password": "12122",
+        "connectionString ": "postgresql://postgres:localhost:5432/Authentys"
+    },
+    "facebook": {
+        "App_Id": "300107974121888"
+    },
+    "google": {
+        "Client_Id": "372738618832-cjmai8l123420n75v4htnoeun8a88vlo.apps.googleusercontent.com"
+    }
+}

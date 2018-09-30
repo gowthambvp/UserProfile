@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     //   }
     //   else {
     this.userProfileService.registration(this.registrationDto).subscribe(obj => {
-      if (obj && obj.length > 0) {
+      if (obj && obj.length == 0) {
         // this.spinner.hide();
         this.router.navigate(["loginNew"]);
       }

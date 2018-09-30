@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserProfileServiceService} from '../../services/user-profile-service.service';
-import {AppComponent} from '../../app.component';
-
+import { UserProfileServiceService } from '../../services/user-profile-service.service';
+import { AppComponent } from '../../app.component';
+import { registrationDto } from '../../models/app.model';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -9,10 +9,10 @@ import {AppComponent} from '../../app.component';
 })
 export class UserListComponent implements OnInit {
   public data: any
-
-  constructor(private userProfileService:UserProfileServiceService,private appComponent:AppComponent) {
-    this.appComponent.loginScreen="";
-   }
+  public userData:any;
+  constructor(private userProfileService: UserProfileServiceService, private appComponent: AppComponent) {
+    this.appComponent.loginScreen = "";
+  }
 
   ngOnInit() {
     // this.data = [{ 'name': 'Anil', 'anil.singh581@gmail.com': 'ssd', 'age': '34', 'city': 'Noida, UP, India' },
@@ -27,14 +27,32 @@ export class UserListComponent implements OnInit {
     // ]
     this.getUserList();
   }
-/**
- * getUserList
- */
-public getUserList() {
-  this.userProfileService.getUserList().then(p=>{
+  /**
+   * getUserList
+   */
+  public getUserList() {
+    this.userProfileService.getUserList().then(p => {
+      debugger;
+      this.data = p;
+    })
+  }
+  /**
+   * editUser
+   */
+  public editUser(editUserData) {
+    this.userProfileService.updateUser(editUserData).then(p => {
+      alert("Update user successfully");
+    });
+  }
+  /**
+   * getUserById
+   */
+  public editUserById(id) {
     debugger;
-    this.data=p;
-  })
-}
+    this.userProfileService.editUserById(id).then(p => {
+      this.userData = p;
+      this.editUser( this.userData);
+    });
+  }
 
 }

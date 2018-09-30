@@ -34,4 +34,19 @@ export class UserProfileServiceService {
       return p;
     });
   }
+editUserById(id)
+{
+   const uri = 'http://localhost:3000/registerRoutes/editUserById?id='+id;
+    return this.http.get(uri).toPromise().then(p=>{
+      return p;
+    });
+}
+
+  updateUser(registrationDto){
+    debugger;
+    const uri = 'http://localhost:3000/registerRoutes/updateUser';
+    return this.http.put(uri,registrationDto).toPromise().then(p=>{
+      return p;
+    })
+  }
 }

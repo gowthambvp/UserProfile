@@ -30,7 +30,7 @@ export class LoginNewComponent implements OnInit {
    debugger;
     this.registrationDto.loginType = LoginTypes.UserProfile.toString();
     this.loginservice.login(this.registrationDto).subscribe(obj => {
-      if (obj && obj.length > 0) {
+      if (obj && obj.length == 0) {
      //   this.spinner.hide();
         this.router.navigate(["userList"]);
       }

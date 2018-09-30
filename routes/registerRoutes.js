@@ -23,19 +23,7 @@ userRoutes.route('/login').post(function (request, response) {
 userRoutes.route('/registration').post(function (request, response) {
   console.log("Registration Connected");
   client.query(
-    "SELECT * FROM spupregistrtion('"
-    + (request.body.FirstName != undefined ? request.body.FirstName : '') + "','"
-    + (request.body.LastName != undefined ? request.body.LastName : '') + "','"
-    + (request.body.UserName != undefined ? request.body.UserName : '') + "','"
-    + (request.body.loginType != undefined ? request.body.loginType : '0') + "','"
-    + (request.body.Password != undefined ? request.body.Password : '') + "','"
-    + (request.body.Email != undefined ? request.body.Email : '') + "','"
-    + (request.body.Id != undefined ? request.body.Id : '') + "','"
-    + (request.body.IdToken != undefined ? request.body.IdToken : '') + "','"
-    + (request.body.Name != undefined ? request.body.Name : '') + "','"
-    + (request.body.Provider != undefined ? request.body.Provider : '') + "','"
-    + (request.body.Token != undefined ? request.body.Token : '') + "')",
-    function (err, result) {
+    "INSERT INTO tupregistration( FirstName, LastName, UserName, LoginType, Password, Email, Id, IdToken, Name, Provider, Token) VALUES ('"+request.body.FirstName+"','"+request.body.LastName+"','"+request.body.UserName+"','"+request.body.LoginType+"','"+request.body.Password+"','"+request.body.Email+"','"+request.body.Id+"','"+request.body.IdToken+"','"+request.body.Name+"','"+request.body.Provider+"','"+request.body.Token+"')" ,function(err,result){
       return response.json(result.rows);
     });
 }, err => {
@@ -58,6 +46,27 @@ userRoutes.route('/userList').get(function (request, response) {
   });
 }, err => {
   console.log("Does isn't get any data..");
-})
+});
+
+//registartion
+userRoutes.route('/updateUser').put(function (request, response) {
+  console.log("Update record");
+  client.query(
+    "UPDATE tupregistration SET FirstName='"+request.body.FirstName+"',LastName='"+request.body.LastName+"',UserName='"+request.body.UserName+"',LoginType='"+request.body.LoginType+"',Password='"+request.body.Password+"',Email='"+request.body.Email+"',Id='"+request.body.Id+"',IdToken='"+request.body.IdToken+"',Name='"+request.body.Name+"',Provider='"+request.body.Provider+"',Token='"+request.body.Token+"' where regId='"+request.body.Id+"')" ,function(err,result){
+      return response.json(result.rows);
+    });
+}, err => {
+  console.log('Can not connect to the database' + err)
+});
+
+userRoutes.route('/editUserById').get(function (request, response) {
+  client.query(
+    "SELECT * FROM tupregistration where regid='" + request.query.id + "'",
+    function (err, result) {
+      return response.json(result.rows);
+    });
+}, err => {
+  console.log('Can not connect to the database' + err)
+});
 
 module.exports = userRoutes;
